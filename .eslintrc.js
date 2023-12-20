@@ -57,5 +57,12 @@ module.exports = {
         aspects: ["noHref", "invalidHref", "preferButton"],
       },
     ],
+    "implicit-arrow-linebreak": "off",
+    "comma-dangle": "off",
+    "jsx-a11y/media-has-caption": "off",
+    "import/no-unresolved": "off",
+    "operator-linebreak": "off",
+    "no-confusing-arrow": "off",
+    indent: "off",
   },
 };
