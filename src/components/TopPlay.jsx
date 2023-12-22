@@ -41,7 +41,7 @@ const TopChartCard = ({
       activeSong={activeSong}
       song={song}
       handlePause={handlePauseClick}
-      handlePlay={handlePlayClick}
+      handlePlay={() => handlePlayClick(song, index)}
     />
   </div>
 );
@@ -88,7 +88,7 @@ const TopPlay = () => {
               isPlaying={isPlaying}
               activeSong={activeSong}
               handlePauseClick={handlePauseClick}
-              handlePlayClick={() => handlePlayClick(song, index)}
+              handlePlayClick={handlePlayClick}
             />
           ))}
         </div>

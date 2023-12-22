@@ -24,7 +24,7 @@ const playerSlice = createSlice({
         state.currentSongs = action.payload.data;
       }
 
-      state.currentIndex = action.payload.i;
+      state.currentIndex = action.payload.index;
       state.isActive = true;
     },
 
