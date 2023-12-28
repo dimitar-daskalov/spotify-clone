@@ -8,18 +8,13 @@ const RelatedSongs = ({
   handlePlayClick,
   artistId,
 }) => {
-  let transformedData = Object.values(data);
-
-  if (transformedData.length === 1) {
-    transformedData = transformedData.flat();
-  }
+  const transformedData = data?.tracks?.data;
 
   return (
     <div className="flex flex-col">
       <h1 className="font-bold text-3xl text-white">Related Songs:</h1>
 
       <div className="flex flex-col w-full mt-6">
-        {/* TODO: - fix the songs player for the song bar */}
         {transformedData?.map((song, index) => (
           <SongBar
             key={`${song.id}-${artistId}`}

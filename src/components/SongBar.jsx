@@ -15,10 +15,7 @@ const SongBar = ({
 }) => (
   <div
     className={`w-full flex flex-row items-center hover:bg-[#4c426e] ${
-      activeSong?.title === song?.attributes?.title ||
-      activeSong?.title === song?.attributes?.name
-        ? "bg-[#4c426e]"
-        : "bg-transparent"
+      activeSong?.title === song?.title ? "bg-[#4c426e]" : "bg-transparent"
     } py-2 p-4 rounded-lg cursor-pointer mb-2`}
   >
     <h3 className="font-bold text-base text-white mr-3">{index + 1}.</h3>
@@ -27,31 +24,22 @@ const SongBar = ({
         className="w-20 h-20 rounded-lg"
         src={
           artistId
-            ? song?.attributes?.images?.artistAvatar ||
-              song?.attributes?.artwork?.url
+            ? song?.artist?.picture_medium
                 .replace("{w}", "125")
                 .replace("{h}", "125")
-            : song?.attributes?.images?.coverArt || defaultImage
+            : song?.album?.cover_big || defaultImage
         }
-        alt={song?.attributes?.title || song?.attributes?.name}
+        alt={song?.title}
       />
       <div className="flex-1 flex flex-col justify-center mx-3">
         {!artistId ? (
-          <Link to={`/songs/${song.id}`}>
-            <p className="text-xl font-bold text-white">
-              {song?.attributes?.title}
-            </p>
+          <Link to={`/song/${song.id}`}>
+            <p className="text-xl font-bold text-white">{song?.title}</p>
           </Link>
         ) : (
-          <p className="text-xl font-bold text-white">
-            {song?.attributes?.artist || song?.attributes?.name}
-          </p>
+          <p className="text-xl font-bold text-white">{song?.artist?.name}</p>
         )}
-        <p className="text-base text-gray-300 mt-1">
-          {song?.attributes?.genres?.primary ||
-            song?.attributes?.artist ||
-            song?.attributes?.genreNames[0]}
-        </p>
+        <p className="text-base text-gray-300 mt-1">{song?.album?.name}</p>
       </div>
     </div>
     {!artistId ? (

@@ -6,7 +6,7 @@ import { FreeMode } from "swiper";
 
 import PlayPause from "./PlayPause";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
-import { useGetTopChartsQuery } from "../redux/services/shazam";
+import { useGetTopChartsQuery } from "../redux/services/deezer";
 
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -24,15 +24,15 @@ const TopChartCard = ({
     <div className="flex-1 flex flex-row justify-between items-center">
       <img
         className="w-20 h-20 rounded-lg"
-        src={song?.images?.coverart}
+        src={song?.album?.cover}
         alt={song?.title}
       />
       <div className="flex-1 flex-column justify-center mx-3">
-        <Link to={`/songs/${song.key}`}>
+        <Link to={`/song/${song.id}`}>
           <p className="font-bold text-xl text-white">{song?.title}</p>
         </Link>
-        <Link to={`/artists/${song?.artists[0]?.adamid}`}>
-          <p className="text-base text-gray-300">{song?.subtitle}</p>
+        <Link to={`/artist/${song?.artist?.id}`}>
+          <p className="text-base text-gray-300">{song?.artist?.name}</p>
         </Link>
       </div>
     </div>
@@ -52,7 +52,7 @@ const TopPlay = () => {
   const { data } = useGetTopChartsQuery();
   const divRef = useRef(null);
 
-  const topPlays = data?.tracks.slice(0, 5);
+  const topPlays = data?.tracks?.data?.slice(0, 5);
 
   const handlePauseClick = () => {
     dispatch(playPause(false));
@@ -82,7 +82,7 @@ const TopPlay = () => {
         <div className="mt-4 flex flex-col gap-1">
           {topPlays?.map((song, index) => (
             <TopChartCard
-              key={song.key}
+              key={song.id}
               song={song}
               index={index}
               isPlaying={isPlaying}
@@ -113,13 +113,13 @@ const TopPlay = () => {
         >
           {topPlays?.map((song) => (
             <SwiperSlide
-              key={song?.key}
+              key={song?.id}
               style={{ width: "25%", height: "auto" }}
               className="shadow-lg rounded-full"
             >
-              <Link to={`artists/${song?.artists[0].adamid}`}>
+              <Link to={`artist/${song?.artist?.id}`}>
                 <img
-                  src={song?.images.background}
+                  src={song?.album?.cover_big}
                   alt="name"
                   className="rounded-full w-full object-cover"
                 />

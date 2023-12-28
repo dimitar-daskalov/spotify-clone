@@ -4,8 +4,8 @@ import { DetailsHeader, Error, Loader, RelatedSongs } from "../components";
 
 import {
   useGetArtistDetailsQuery,
-  useGetArtistRelatedSongsQuery,
-} from "../redux/services/shazam";
+  useGetSongRelatedQuery,
+} from "../redux/services/deezer";
 
 const ArtistDetails = () => {
   const { id: artistId } = useParams();
@@ -15,11 +15,13 @@ const ArtistDetails = () => {
     isFetching: isArtistDataFetching,
     error: isArtistDataError,
   } = useGetArtistDetailsQuery({ artistId });
+
+  const albumId = artistData;
   const {
     data: artistRelatedSongsData,
     isFetching: isArtistRelatedSongsDataFetching,
     error: isArtistRelatedSongsError,
-  } = useGetArtistRelatedSongsQuery({ artistId });
+  } = useGetSongRelatedQuery(albumId, { skip: !albumId });
 
   if (isArtistDataFetching || isArtistRelatedSongsDataFetching) {
     return <Loader title="Searching for artist details" />;
@@ -27,11 +29,9 @@ const ArtistDetails = () => {
 
   if (isArtistDataError || isArtistRelatedSongsError) return <Error />;
 
-  const transformedArtistData = Object.values(artistData)[0][0].attributes;
-
   return (
     <div className="flex flex-col">
-      <DetailsHeader artistId={artistId} artistData={transformedArtistData} />
+      <DetailsHeader artistId={artistId} artistData={artistData} />
       <RelatedSongs
         data={artistRelatedSongsData}
         artistId={artistId}

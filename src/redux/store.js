@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import playerReducer from "./features/playerSlice";
-import { shazamApi } from "./services/shazam";
+import { deezerApi } from "./services/deezer";
 
 export const store = configureStore({
   reducer: {
-    [shazamApi.reducerPath]: shazamApi.reducer,
+    [deezerApi.reducerPath]: deezerApi.reducer,
     player: playerReducer,
   },
   middleware: (getDefaultMiddleware) =>
@@ -13,5 +13,5 @@ export const store = configureStore({
       thunk: true,
       immutableCheck: true,
       serializableCheck: true,
-    }).concat(shazamApi.middleware),
+    }).concat(deezerApi.middleware),
 });

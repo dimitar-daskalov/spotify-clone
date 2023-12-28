@@ -14,6 +14,7 @@ const VolumeBar = ({ value, min, max, onChange, setVolume }) => (
       <BsVolumeDownFill size={25} color="#FFF" onClick={() => setVolume(0)} />
     )}
     {value === 0 && (
+      // TODO: - check why the icon hides on mute
       <BsFillVolumeMuteFill
         size={25}
         color="#FFF"
