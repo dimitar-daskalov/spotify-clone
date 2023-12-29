@@ -19,21 +19,27 @@ const TopChartCard = ({
   handlePauseClick,
   handlePlayClick,
 }) => (
-  <div className="w-full flex flex-row items-center hover:bg-[#4c426e] py-2 p-4 rounded-lg cursor-pointer mb-2">
-    <h3 className="font-bold text-base text-white mr-3">{index + 1}.</h3>
-    <div className="flex-1 flex flex-row justify-between items-center">
-      <img
-        className="w-20 h-20 rounded-lg"
-        src={song?.album?.cover_big || defaultImage}
-        alt={song?.title}
-      />
-      <div className="flex-1 flex-column justify-center mx-3">
-        <Link to={`/song/${song.id}`}>
-          <p className="font-bold text-xl text-white">{song?.title}</p>
-        </Link>
-        <Link to={`/artist/${song?.artist?.id}`}>
-          <p className="text-base text-gray-300">{song?.artist?.name}</p>
-        </Link>
+  <div className="w-full flex flex-row justify-between items-center hover:bg-[#4c426e] py-2 p-4 rounded-lg cursor-pointer mb-2">
+    <div className="flex items-center justify-start">
+      <h3 className="font-bold text-base text-white mr-3">{index + 1}.</h3>
+      <div className="flex flex-row justify-between items-center">
+        <img
+          className="w-20 h-20 rounded-lg"
+          src={song?.album?.cover_big || defaultImage}
+          alt={song?.title}
+        />
+        <div className="flex-column justify-center mx-3">
+          <Link to={`/song/${song.id}`}>
+            <p className="font-bold text-xl text-white w-28 lg:w-48 truncate">
+              {song?.title}
+            </p>
+          </Link>
+          <Link to={`/artist/${song?.artist?.id}`}>
+            <p className="text-base text-gray-300 w-28 lg:w-48 truncate">
+              {song?.artist?.name}
+            </p>
+          </Link>
+        </div>
       </div>
     </div>
     <PlayPause
