@@ -8,4 +8,4 @@ React, JavaScript, Tailwind CSS, Vite, Axios, RapidAPI.
 
 ## Find it here
 
-Will add a link to the deployed app in the future.
+Link: https://slothify.netlify.app/
