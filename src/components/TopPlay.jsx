@@ -1,11 +1,10 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper";
-
+import { usePlayPause } from "../hooks";
 import PlayPause from "./PlayPause";
-import { playPause, setActiveSong } from "../redux/features/playerSlice";
 import { useGetTopChartsQuery } from "../redux/services/deezer";
 import defaultImage from "../assets/defaultSong.png";
 
@@ -48,21 +47,12 @@ const TopChartCard = ({
 );
 
 const TopPlay = () => {
-  const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const { data } = useGetTopChartsQuery();
   const divRef = useRef(null);
+  const { handlePauseClick, handlePlayClick } = usePlayPause();
 
   const topPlays = data?.tracks?.data?.slice(0, 5);
-
-  const handlePauseClick = () => {
-    dispatch(playPause(false));
-  };
-
-  const handlePlayClick = (song, index) => {
-    dispatch(setActiveSong({ song, data, index }));
-    dispatch(playPause(true));
-  };
 
   useEffect(() => {
     divRef.current.scrollIntoView({ behavior: "smooth" });

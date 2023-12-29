@@ -1,15 +1,14 @@
 import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { usePlayPause } from "../hooks";
 import { DetailsHeader, Error, Loader, RelatedSongs } from "../components";
 
-import { setActiveSong, playPause } from "../redux/features/playerSlice";
 import {
   useGetSongDetailsQuery,
   useGetSongRelatedQuery,
 } from "../redux/services/deezer";
 
 const SongDetails = () => {
-  const dispatch = useDispatch();
   const { songid } = useParams();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const {
@@ -17,6 +16,7 @@ const SongDetails = () => {
     isFetching: isFetchingSongData,
     error: songDataError,
   } = useGetSongDetailsQuery({ songid });
+  const { handlePauseClick, handlePlayClick } = usePlayPause();
 
   const albumId = songData?.album?.id;
 
@@ -25,15 +25,6 @@ const SongDetails = () => {
     isFetching: isFetchingRelatedSongsData,
     error: relatedSongsDataError,
   } = useGetSongRelatedQuery(albumId, { skip: !albumId });
-
-  const handlePauseClick = () => {
-    dispatch(playPause(false));
-  };
-
-  const handlePlayClick = (song, index) => {
-    dispatch(setActiveSong({ song, relatedSongsData, index }));
-    dispatch(playPause(true));
-  };
 
   if (isFetchingSongData || isFetchingRelatedSongsData) {
     return <Loader title="Searching for song details" />;

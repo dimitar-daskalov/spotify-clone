@@ -20,6 +20,7 @@ const RelatedSongs = ({
             key={`${song.id}-${artistId}`}
             song={song}
             index={index}
+            data={data}
             artistId={artistId}
             isPlaying={isPlaying}
             activeSong={activeSong}

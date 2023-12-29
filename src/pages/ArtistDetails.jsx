@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { DetailsHeader, Error, Loader, RelatedSongs } from "../components";
-import { setActiveSong, playPause } from "../redux/features/playerSlice";
+import { usePlayPause } from "../hooks";
 
 import {
   useGetArtistDetailsQuery,
@@ -10,13 +10,13 @@ import {
 
 const ArtistDetails = () => {
   const { id: artistId } = useParams();
-  const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const {
     data: artistData,
     isFetching: isArtistDataFetching,
     error: isArtistDataError,
   } = useGetArtistDetailsQuery({ artistId });
+  const { handlePauseClick, handlePlayClick } = usePlayPause();
 
   const {
     data: artistRelatedSongsData,
@@ -25,15 +25,6 @@ const ArtistDetails = () => {
   } = useGetSongsBySearchTermQuery(artistData?.name, {
     skip: !artistData?.name,
   });
-
-  const handlePauseClick = () => {
-    dispatch(playPause(false));
-  };
-
-  const handlePlayClick = (song, index) => {
-    dispatch(setActiveSong({ song, artistRelatedSongsData, index }));
-    dispatch(playPause(true));
-  };
 
   if (isArtistDataFetching || isArtistRelatedSongsDataFetching) {
     return <Loader title="Searching for artist details" />;

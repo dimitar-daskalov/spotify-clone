@@ -6,6 +6,7 @@ import {
   BsFillPlayFill,
   BsShuffle,
 } from "react-icons/bs";
+import { GiMusicalNotes } from "react-icons/gi";
 
 const Controls = ({
   isPlaying,
@@ -56,12 +57,16 @@ const Controls = ({
         onClick={handleNextSong}
       />
     )}
-    <BsShuffle
-      size={20}
-      color={shuffle ? "red" : "white"}
-      onClick={() => setShuffle((prev) => !prev)}
-      className="hidden sm:block cursor-pointer"
-    />
+    {currentSongs?.length ? (
+      <BsShuffle
+        size={20}
+        color={shuffle ? "red" : "white"}
+        onClick={() => setShuffle((prev) => !prev)}
+        className="hidden sm:block cursor-pointer"
+      />
+    ) : (
+      <GiMusicalNotes size={20} color="white" />
+    )}
   </div>
 );
 
