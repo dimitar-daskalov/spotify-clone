@@ -1,12 +1,14 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { topChartsId } from "../../constants";
 
+const apiKey = import.meta.env.VITE_RAPID_API_KEY;
+
 export const deezerApi = createApi({
   reducerPath: "deezerApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://deezerdevs-deezer.p.rapidapi.com/",
     prepareHeaders: (headers) => {
-      headers.set("X-RapidAPI-Key", import.meta.env.VITE_RAPID_API_KEY);
+      headers.set("X-RapidAPI-Key", apiKey);
 
       return headers;
     },
