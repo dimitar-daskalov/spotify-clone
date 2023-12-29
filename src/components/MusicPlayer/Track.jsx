@@ -9,7 +9,7 @@ const Track = ({ isPlaying, isActive, activeSong }) => (
     >
       <img
         src={activeSong?.album?.cover || defaultImage}
-        alt="cover art"
+        alt="cover"
         className="rounded-full"
       />
     </div>

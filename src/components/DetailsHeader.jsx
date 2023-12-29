@@ -15,7 +15,7 @@ const DetailsHeader = ({ artistId, artistData, songData }) => (
                 .replace("{h}", "500") || defaultImage
             : songData?.album.cover_big || defaultImage
         }
-        alt="art"
+        alt="cover"
         className="sm:w-48 w-28 sm:h-48 h-28 rounded-full object-cover border-2 shadow-xl shadow-black"
       />
       <div className="ml-5">
