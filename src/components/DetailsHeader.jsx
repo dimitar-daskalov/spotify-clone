@@ -10,7 +10,9 @@ const DetailsHeader = ({ artistId, artistData, songData }) => (
       <img
         src={
           artistId
-            ? artistData.picture_big.replace("{w}", "500").replace("{h}", "500")
+            ? artistData.picture_big
+                .replace("{w}", "500")
+                .replace("{h}", "500") || defaultImage
             : songData?.album.cover_big || defaultImage
         }
         alt="art"
@@ -21,7 +23,7 @@ const DetailsHeader = ({ artistId, artistData, songData }) => (
           {artistId ? artistData.name : songData?.title}
         </p>
         {!artistId && (
-          <Link to={`/artist/${artistId}`}>
+          <Link to={`/artist/${songData?.artist.id}`}>
             <p className="text-base text-gray-400 mt-2">
               {songData?.artist.name}
             </p>

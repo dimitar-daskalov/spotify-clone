@@ -1,4 +1,4 @@
-import React from "react";
+import defaultImage from "../../assets/defaultSong.png";
 
 const Track = ({ isPlaying, isActive, activeSong }) => (
   <div className="flex-1 flex items-center justify-start">
@@ -8,7 +8,7 @@ const Track = ({ isPlaying, isActive, activeSong }) => (
       } hidden sm:block h-16 w-16 mr-4`}
     >
       <img
-        src={activeSong?.album?.cover}
+        src={activeSong?.album?.cover || defaultImage}
         alt="cover art"
         className="rounded-full"
       />

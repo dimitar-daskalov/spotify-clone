@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import defaultImage from "../assets/defaultSong.png";
 
 const ArtistCard = ({ track }) => {
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ const ArtistCard = ({ track }) => {
       onClick={() => navigate(`/artist/${track?.artist?.id}`)}
     >
       <img
-        src={track?.album?.cover_big}
+        src={track?.album?.cover_big || defaultImage}
         alt="artist"
         className="w-full h-56 rounded-lg"
       />

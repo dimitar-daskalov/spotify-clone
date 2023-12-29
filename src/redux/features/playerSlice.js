@@ -19,6 +19,8 @@ const playerSlice = createSlice({
         state.currentSongs = action.payload.data.tracks.data;
       } else if (action.payload?.relatedSongsData?.tracks) {
         state.currentSongs = action.payload.relatedSongsData.tracks;
+      } else if (action.payload?.artistRelatedSongsData?.data) {
+        state.currentSongs = action.payload.artistRelatedSongsData.data;
       } else {
         state.currentSongs = action.payload.data;
       }

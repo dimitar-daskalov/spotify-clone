@@ -4,7 +4,7 @@ import { RiCloseLine } from "react-icons/ri";
 
 import { HiOutlineMenu } from "react-icons/hi";
 import { logo } from "../assets";
-import { links } from "../assets/constants";
+import { links } from "../constants";
 
 const NavLinks = ({ handleClick }) => (
   <div className="mt-10">

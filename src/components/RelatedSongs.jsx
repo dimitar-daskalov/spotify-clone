@@ -8,7 +8,7 @@ const RelatedSongs = ({
   handlePlayClick,
   artistId,
 }) => {
-  const transformedData = data?.tracks?.data;
+  const transformedData = data?.tracks?.data || data?.data;
 
   return (
     <div className="flex flex-col">

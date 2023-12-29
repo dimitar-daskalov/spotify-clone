@@ -7,6 +7,7 @@ import { FreeMode } from "swiper";
 import PlayPause from "./PlayPause";
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
 import { useGetTopChartsQuery } from "../redux/services/deezer";
+import defaultImage from "../assets/defaultSong.png";
 
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -24,7 +25,7 @@ const TopChartCard = ({
     <div className="flex-1 flex flex-row justify-between items-center">
       <img
         className="w-20 h-20 rounded-lg"
-        src={song?.album?.cover}
+        src={song?.album?.cover_big || defaultImage}
         alt={song?.title}
       />
       <div className="flex-1 flex-column justify-center mx-3">
@@ -119,7 +120,7 @@ const TopPlay = () => {
             >
               <Link to={`artist/${song?.artist?.id}`}>
                 <img
-                  src={song?.album?.cover_big}
+                  src={song?.album?.cover_big || defaultImage}
                   alt="name"
                   className="rounded-full w-full object-cover"
                 />

@@ -37,20 +37,18 @@ const SongBar = ({
             <p className="text-xl font-bold text-white">{song?.title}</p>
           </Link>
         ) : (
-          <p className="text-xl font-bold text-white">{song?.artist?.name}</p>
+          <p className="text-xl font-bold text-white">{song?.title}</p>
         )}
-        <p className="text-base text-gray-300 mt-1">{song?.album?.name}</p>
+        <p className="text-base text-gray-300 mt-1">{song?.album?.title}</p>
       </div>
     </div>
-    {!artistId ? (
-      <PlayPause
-        isPlaying={isPlaying}
-        activeSong={activeSong}
-        song={song}
-        handlePause={handlePauseClick}
-        handlePlay={() => handlePlayClick(song, index)}
-      />
-    ) : null}
+    <PlayPause
+      isPlaying={isPlaying}
+      activeSong={activeSong}
+      song={song}
+      handlePause={handlePauseClick}
+      handlePlay={() => handlePlayClick(song, index)}
+    />
   </div>
 );
 

@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { topChartsId } from "../../assets/constants";
+import { topChartsId } from "../../constants";
 
 export const deezerApi = createApi({
   reducerPath: "deezerApi",
@@ -23,7 +23,7 @@ export const deezerApi = createApi({
       query: (albumid) => `/album/${albumid}`,
     }),
     getSongsBySearchTerm: builder.query({
-      query: ({ searchTerm }) => `/search?q=${searchTerm}`,
+      query: (searchTerm) => `/search?q=${searchTerm}`,
     }),
   }),
 });
